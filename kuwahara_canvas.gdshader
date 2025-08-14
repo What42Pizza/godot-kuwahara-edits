@@ -1,6 +1,7 @@
 shader_type canvas_item;
 
-// Precalculated kernels for various radius quadrants
+
+// The coordinates of every point in a quadrant / kernel
 const vec2 kernel3[4] = {vec2(0,0), vec2(0,1), vec2(1,0), vec2(1,1)};
 const vec2 kernel4[13] = {vec2(0,0), vec2(0,1), vec2(0,2), vec2(0,3), vec2(1,0), vec2(1,1), vec2(1,2), vec2(1,3), vec2(2,0), vec2(2,1), vec2(2,2), vec2(3,0), vec2(3,1)};
 const vec2 kernel5[25] = {vec2(0,0), vec2(0,1), vec2(0,2), vec2(0,3), vec2(0,4), vec2(1,0), vec2(2,0), vec2(3,0), vec2(4,0), vec2(1,1), vec2(1,2), vec2(1,3), vec2(1,4), vec2(2,0), vec2(2,1), vec2(2,2), vec2(2,3), vec2(2,4), vec2(3,0), vec2(3,1), vec2(3,2), vec2(3,3), vec2(4,0), vec2(4,1), vec2(4,2)};
@@ -31,6 +32,10 @@ vec4 quadrant(sampler2D tex, vec2 uv, float xDir, float yDir, vec2 resolution) {
 	return vec4(pointTotal.x, pointTotal.y, pointTotal.z, standardDeviation);
 }
 
+
+
+
+
 void fragment() {
 	vec2 resolution = vec2(textureSize(TEXTURE, 0));
 
@@ -51,6 +56,7 @@ void fragment() {
 			colour = quadrants[i].xyz;
 		}
 	}
+	
 	// Use the mean colour of the lowest deviation quadrant
 	COLOR.xyz = colour/float(kernel4.length());
 }

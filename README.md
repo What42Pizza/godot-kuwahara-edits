@@ -36,7 +36,7 @@ It is available as both a canvas_item and spatial shader.
 ## Notes
 ### Changing Kernel Size
 The shader comes with 4 pre-made circular kernels to choose from: 3, 4, 5 and 6 pixels wide. The examples above were captured using the default 4 pixel kernel.
-To use a different kernel size, rename at lines 15, 17 and 55.
+To use a different kernel size, rename the 'kernel4' at lines 16, 18 and 61.
 The larger the kernel, the slower the shader.
 
 ### Use in Spatial Scenes
